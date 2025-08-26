@@ -1,0 +1,10 @@
+
+    <h1>Редактировать пост</h1>
+    <form method='post'>
+        <input name='title' value='{{ post.title }}'><br>
+        <textarea name='content'>{{ post.content }}</textarea><br>
+        <input name='tags' value='{{ post.tags }}'><br>
+        <label><input type='checkbox' name='private' {% if post.is_private %}checked{% endif %}> Приватный пост</label><br>
+        <button type='submit'>Сохранить</button>
+    </form>
+    

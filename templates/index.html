@@ -1,0 +1,16 @@
+
+    <!doctype html>
+    <html lang='ru'>
+    <head><title>Блог</title></head>
+    <body>
+        <h1>Лента постов</h1>
+        {% if session['user_id'] %}<a href='{{ url_for('create') }}'>Новый пост</a> | <a href='{{ url_for('logout') }}'>Выйти</a>{% else %}<a href='{{ url_for('login') }}'>Войти</a> | <a href='{{ url_for('register') }}'>Регистрация</a>{% endif %}
+        <ul>
+            {% for post in posts %}
+                {% if not post.is_private %}
+                    <li><a href='{{ url_for('post', id=post.id) }}'>{{ post.title }}</a> — {{ post.author.username }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </body></html>
+    

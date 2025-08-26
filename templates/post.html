@@ -1,0 +1,20 @@
+
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <small>Автор: {{ post.author.username }}</small>
+    <h3>Комментарии:</h3>
+    <ul>
+        {% for c in comments %}
+            <li>{{ c.content }}</li>
+        {% endfor %}
+    </ul>
+    {% if session['user_id'] %}
+    <form method='post'>
+        <textarea name='content' placeholder='Ваш комментарий'></textarea><br>
+        <button type='submit'>Отправить</button>
+    </form>
+    {% endif %}
+    {% if post.user_id == session['user_id'] %}
+        <a href='{{ url_for('edit', id=post.id) }}'>Редактировать</a> | <a href='{{ url_for('delete', id=post.id) }}'>Удалить</a>
+    {% endif %}
+    
